@@ -1,4 +1,4 @@
-import { Champ } from "../champ/champ.class"
+import { Champ } from '../champ/champ.class'
 
 export enum EUserLvl {
   one = 1,
@@ -13,15 +13,15 @@ export enum EUserLvl {
 }
 
 interface IUser {
-  lvl: EUserLvl,
-  gold: number,
+  lvl: EUserLvl
+  gold: number
   buyPool: Champ[]
 }
 
 export class User implements IUser {
-  lvl: EUserLvl;
-  gold: number;
-  buyPool: Champ[];
+  lvl: EUserLvl
+  gold: number
+  buyPool: Champ[]
 
   constructor() {
     this.lvl = 1
