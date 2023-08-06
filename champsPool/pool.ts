@@ -1,4 +1,4 @@
-import { ELvl, Champ }from "../champ/champ.class"
+import { EChampLvl, Champ }from "../champ/champ.class"
 
 interface IPool {
   champs: Champ[],
@@ -44,7 +44,7 @@ class Pool implements IPool {
     this.assignmentChampsByLvl()
   }
 
-  private findByLevels (lvl: ELvl) {
+  private findByLevels (lvl: EChampLvl) {
     this[EPoolChampLevels[lvl]] = this.champs.filter((e) => e.lvl === lvl)
   }
 

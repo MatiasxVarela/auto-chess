@@ -1,4 +1,4 @@
-export enum ELvl {
+export enum EChampLvl {
   one = 1,
   two,
   three,
@@ -16,18 +16,18 @@ enum LengthPool {
 
 interface IChamp {
   name: string,
-  lvl: ELvl,
+  lvl: EChampLvl,
   amount: LengthPool
 }
 
 export class Champ implements IChamp {
   name: string
-  lvl: ELvl
+  lvl: EChampLvl
   amount: LengthPool
   
-  constructor(name: string, lvl: ELvl){
+  constructor(name: string, lvl: EChampLvl){
     this.name = name
     this.lvl = lvl
-    this.amount = LengthPool[ELvl[lvl]]
+    this.amount = LengthPool[EChampLvl[lvl]]
   }
 }
