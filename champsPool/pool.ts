@@ -44,8 +44,22 @@ class Pool implements IPool {
     this.champs = arrChamps
     this.assignmentChampsByLvl()
   }
+
+  getBuyPool (userLvl: EUserLvl): Champ[] {
+    const arrRandomProb = this.getArrayRandomProb(userLvl)
+    const champsToBuy: Champ[] = []
+
+    for (let index = 0; index < arrRandomProb.length; index++) {
+     const poolLvlChamp = this[EPoolChampLevels[arrRandomProb[index]]]
+     const randomIndex = Math.floor(Math.random() * poolLvlChamp.length)
+     const randomChamp = poolLvlChamp[randomIndex]
+     champsToBuy.push(randomChamp)
+    }
+
+    return champsToBuy
+  }
   
-  getArrayRandomProb (userLvl: EUserLvl): EChampLvl[] {
+  private getArrayRandomProb (userLvl: EUserLvl): EChampLvl[] {
     const arr: number[] = []
     for (let index = 0; index < 4; index++) {
       arr.push(this.getRandomProb(userLvl))
@@ -89,8 +103,13 @@ class Pool implements IPool {
 
 }
 
-const azir = new Champ("Azir", 5)
-const classecita = new Pool([azir])
+const campeonesEnArray = [
+  new Champ("Azir", 5),
+  new Champ("Samira", 4),
+  new Champ("Teemo", 3),
+  new Champ("Jinx", 2),
+  new Champ("Vi", 1),
+]
+const classecita = new Pool(campeonesEnArray)
 
-console.log(classecita.getArrayRandomProb(9))
-
+console.log(classecita.getBuyPool(1))
