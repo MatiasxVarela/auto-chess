@@ -1,4 +1,5 @@
 import { EChampLvl, Champ }from "../champ/champ.class"
+import { EUserLvl } from "../user/user"
 
 interface IPool {
   champs: Champ[],
@@ -43,6 +44,14 @@ class Pool implements IPool {
     this.champs = arrChamps
     this.assignmentChampsByLvl()
   }
+  
+  getArrayRandomProb (userLvl: EUserLvl): EChampLvl[] {
+    const arr: number[] = []
+    for (let index = 0; index < 4; index++) {
+      arr.push(this.getRandomProb(userLvl))
+    }
+    return arr
+  }
 
   private findByLevels (lvl: EChampLvl) {
     this[EPoolChampLevels[lvl]] = this.champs.filter((e) => e.lvl === lvl)
@@ -54,31 +63,34 @@ class Pool implements IPool {
     }
   }
 
+
+  private getRandomProb (userLvl: EUserLvl): EChampLvl {
+    const randomNum = Math.floor(Math.random() * 100 + 1);
+    const propArr = this.ReRollProbability[userLvl]
+    const firstProb = propArr[0]
+    const secondProb = firstProb + propArr[1]
+    const thirdProb = secondProb + propArr[2]
+    const fourthProb = thirdProb + propArr[3]
+    const fifthProb =  fourthProb + propArr[4]
+    if (randomNum <= firstProb) {
+      return 1
+    } else if (randomNum > firstProb && randomNum <= secondProb) {
+      return 2
+    } else if (randomNum > secondProb && randomNum <= thirdProb){
+      return 3
+    } else if (randomNum > thirdProb && randomNum <= fourthProb){
+      return 4
+    } else if (randomNum > fourthProb && randomNum <= fifthProb){
+      return 5
+    } else {
+      throw new Error("Error con las probabilidades")
+    }
+  }
+
 }
 
 const azir = new Champ("Azir", 5)
 const classecita = new Pool([azir])
 
-const hola = classecita.ReRollProbability
-
-const num = 100
-const propArr = hola[7]
-const firstProb = propArr[0]
-const secondProb = firstProb + propArr[1]
-const thirdProb = secondProb + propArr[2]
-const fourthProb = thirdProb + propArr[3]
-const fifthProb =  fourthProb + propArr[4]
-
-if (num <= firstProb) {
-  console.log("lvl 1")
-} else if (num > firstProb && num <= secondProb) {
-  console.log("lvl 2")
-} else if (num > secondProb && num <= thirdProb){
-  console.log("lvl 3")
-} else if (num > thirdProb && num <= fourthProb){
-  console.log("lvl 4")
-} else if (num > fourthProb && num <= fifthProb){
-  console.log("lvl 5")
-}
-
+console.log(classecita.getArrayRandomProb(9))
 

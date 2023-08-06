@@ -1,6 +1,6 @@
 import { Champ } from "../champ/champ.class"
 
-enum EUserLvl {
+export enum EUserLvl {
   one = 1,
   two,
   three,
@@ -18,7 +18,7 @@ interface IUser {
   buyPool: Champ[]
 }
 
-class User implements IUser {
+export class User implements IUser {
   lvl: EUserLvl;
   gold: number;
   buyPool: Champ[];
