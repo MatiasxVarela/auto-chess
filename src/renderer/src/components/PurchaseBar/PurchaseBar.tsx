@@ -20,7 +20,7 @@ const ButtonDivs = styled.div`
 `
 const SButton = styled.div`
   border: 2px solid black;
-  padding: 5px;
+  padding: 10px;
   margin: 5px 0px 5px 0px;
   cursor: pointer;
 `
