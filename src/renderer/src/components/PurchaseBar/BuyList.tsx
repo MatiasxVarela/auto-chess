@@ -1,4 +1,4 @@
-import { Champ } from '../modules/champ/champ.class'
+import { Champ } from '../../modules/champ/champ.class'
 import styled from 'styled-components'
 
 const ContainerDiv = styled.div`
