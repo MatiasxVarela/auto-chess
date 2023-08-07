@@ -22,7 +22,8 @@
   "dependencies": {
     "@electron-toolkit/preload": "^2.0.0",
     "@electron-toolkit/utils": "^1.0.2",
-    "jsdom": "^22.1.0"
+    "jsdom": "^22.1.0",
+    "styled-components": "^6.0.7"
   },
   "devDependencies": {
     "@electron-toolkit/tsconfig": "^1.0.1",
