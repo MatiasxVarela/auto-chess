@@ -1,5 +1,3 @@
-import { Champ } from '../champ/champ.class'
-
 export enum EUserLvl {
   one = 1,
   two,
@@ -38,3 +36,5 @@ export class User implements IUser {
     this.lvl += 1
   }
 }
+
+export const user = new User()

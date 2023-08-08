@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { useState } from 'react'
 
 import { pool } from '../../modules/champsPool/pool'
+import { user } from '../../modules/user/user'
 import Buylist from './BuyList'
 
 const PurchaseDiv = styled.div`
@@ -27,16 +28,21 @@ const SButton = styled.div`
 function PurchaseBar(): JSX.Element {
   const [ArrayChamp, SetArrayChamp] = useState(pool.getBuyPool(9))
 
-  const handleOnClick = (): void => {
+  const reRollOnClick = (): void => {
     const newPoolToBoy = pool.getBuyPool(9)
     SetArrayChamp(newPoolToBoy)
   }
+
+  const buyExpOnClick = (): void => {
+    user.buyExp()
+  }
+
   return (
     <>
       <PurchaseDiv>
         <ButtonDivs>
-          <SButton>lvl up</SButton>
-          <SButton onClick={handleOnClick}>tuki</SButton>
+          <SButton onClick={buyExpOnClick}>lvl up</SButton>
+          <SButton onClick={reRollOnClick}>tuki</SButton>
         </ButtonDivs>
         <Buylist arrayChamp={ArrayChamp} />
       </PurchaseDiv>
